@@ -14,14 +14,13 @@ on:
     branches: main
 
 env:
-  HOST: >-
+  DOMAIN: >-
     ${{
-      github.ref_name == 'develop' && 'develop.medical-place.com' ||
-      github.ref_name == 'preprod' && 'preprod.medical-place.com' ||
-      github.ref_name == 'prod' && 'medical-place.com' ||
-      github.ref_name == 'main' && 'google.com'
+      github.ref_name == 'develop' && 'https://develop.medical-place.com' ||
+      github.ref_name == 'preprod' && 'https://preprod.medical-place.com' ||
+      github.ref_name == 'prod' && 'https://medical-place.com' ||
+      github.ref_name == 'main' && 'https://google.com'
     }}
-  DOMAIN: https://${{ env.HOST }}
 
 jobs:
   build:
@@ -53,4 +52,3 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/${{ matrix.app }}:${{ github.sha }}
           build-args: |
             DOMAIN=${{ env.DOMAIN }}
-            HOST=${{ env.HOST }}
