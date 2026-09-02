@@ -1,3 +1,6 @@
 FROM node:22.5.1-alpine AS base
 
-RUN echo "Medical" >> /tmp/test.txt
+ENV DOMAIN=${DOMAIN}
+ENV HOST=${HOST}
+
+RUN echo "Medical - Domain: $DOMAIN, Host: $HOST" >> /tmp/test.txt
