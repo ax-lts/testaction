@@ -14,12 +14,13 @@ on:
     branches: main
 
 env:
-  HOST: ${{ 
-    github.ref_name == 'develop' && 'develop.medical-place.com' ||
-    github.ref_name == 'preprod' && 'preprod.medical-place.com' ||
-    github.ref_name == 'prod' && 'medical-place.com' ||
-    github.ref_name == 'main' && 'google.com'
-  }}
+  HOST: >-
+    ${{
+      github.ref_name == 'develop' && 'develop.medical-place.com' ||
+      github.ref_name == 'preprod' && 'preprod.medical-place.com' ||
+      github.ref_name == 'prod' && 'medical-place.com' ||
+      github.ref_name == 'main' && 'google.com'
+    }}
   DOMAIN: https://${{ env.HOST }}
 
 jobs:
