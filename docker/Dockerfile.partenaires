@@ -1,5 +1,7 @@
 FROM node:22.5.1-alpine AS base
 
+ARG DOMAIN
+
 ENV DOMAIN=${DOMAIN}
 
 RUN echo "Partenaires - Domain: $DOMAIN" >> /tmp/test.txt
